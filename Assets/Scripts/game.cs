@@ -10,6 +10,7 @@ using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
 public class game : MonoBehaviour
 {
 
+    ROSConnection rosPub;
 
     private GameObject gem;
     private GameObject cherry;
@@ -18,6 +19,7 @@ public class game : MonoBehaviour
     private Vector3 show;
 
     private Vector3 hide;
+    private Vector3 hideEagle;
     // Hide after the background
     // Start is called before the first frame update
 
@@ -37,7 +39,26 @@ public class game : MonoBehaviour
 
         eagle = GameObject.Find("eagle");
 
-        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("chatter_xy", UpdatePos);     
+        
+
+        // rosPub = ROSConnection.GetOrCreateInstance();
+        // By publishing the z value of cherry, we shall know who is the current player
+        // if z value is -10, then the current player is collecting gem
+        // if z value is 0, then the current player is collecting cherry
+        // rosPub.RegisterPublisher<PosRot>("cherry_pos");
+
+        // TODO
+        // Need to test if this is working with realsense
+        if(gem.transform.position.z == 0){
+            ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("panda_reader", UpdatePos);
+        } else if( cherry.transform.position.z == 0){
+            ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("chatter_xy", UpdatePos);
+        }     
+        
+        // ROS1 = ROSConnection;
+        // ROS1.RegisterPublisher<PositionUnity>(_rosTopic);
+        // UpdatePos();
+        // From the web form, let's try this out.
     }
 
     // Update is called once per frame
@@ -49,6 +70,9 @@ public class game : MonoBehaviour
 
         float x = hand.pos_x;
         float y = hand.pos_y;
+
+        Debug.Log(x);
+        Debug.Log(y);
         Vector3 movement =new Vector3(x,y,0);
         //eagle.transform.Translate(movement * speed * Time.deltaTime);
         eagle.transform.position = Vector3.MoveTowards(eagle.transform.position, movement, speed * Time.deltaTime);
