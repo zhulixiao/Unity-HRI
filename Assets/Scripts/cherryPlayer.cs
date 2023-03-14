@@ -9,7 +9,7 @@ using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
 public class cherryPlayer : MonoBehaviour
 {
 
-    private GameObject gem;
+    // private GameObject gem;
     private GameObject eagle;
     private Vector3 show;
     private Vector3 hide;
@@ -21,7 +21,7 @@ public class cherryPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        show = new Vector3(0,0,0);
+        show = new Vector3(0,1,0);
         hide = new Vector3(0,0,-10);
         gem = GameObject.Find("gem");
         cherry = GameObject.Find("cherry");
@@ -87,8 +87,8 @@ public class cherryPlayer : MonoBehaviour
 
 
             if(cherry.transform.position.x > 3.2 && cherry.transform.position.y > 3.2){
-                cherry.transform.position = hide;
-                gem.transform.position = show;
+                cherry.transform.position = show;
+                // gem.transform.position = show;
                 lockCherry = false;
             }            
 

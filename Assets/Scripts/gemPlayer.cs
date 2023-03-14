@@ -23,7 +23,7 @@ public class gemPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        show = new Vector3(0,0,0);
+        show = new Vector3(0,-1,0);
         hide = new Vector3(0,0,-10);
         gem = GameObject.Find("gem");
         gem.transform.position = show;
@@ -96,8 +96,8 @@ public class gemPlayer : MonoBehaviour
             }
 
             if(gem.transform.position.x < -3.2 && gem.transform.position.y < -3.2){
-                cherry.transform.position = show;
-                gem.transform.position = hide;
+               // cherry.transform.position = show;
+                gem.transform.position = show;
                 lockGem = false;
             }
 
