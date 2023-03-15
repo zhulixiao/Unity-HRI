@@ -28,10 +28,6 @@ public class gemPlayer : MonoBehaviour
         gem = GameObject.Find("gem");
         gem.transform.position = show;
         
-
-        cherry = GameObject.Find("cherry");
-        cherry.transform.position = hide;
-        
         eagle = GameObject.Find("gem-picker");
 
         // Assuming the robot is picking gem

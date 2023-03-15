@@ -23,9 +23,10 @@ public class cherryPlayer : MonoBehaviour
     {
         show = new Vector3(0,1,0);
         hide = new Vector3(0,0,-10);
-        gem = GameObject.Find("gem");
         cherry = GameObject.Find("cherry");
         eagle = GameObject.Find("cherry-picker");
+
+        cherry.transform.position = show;
 
         // For cherry player
         ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("cherry_pos", UpdatePos);
