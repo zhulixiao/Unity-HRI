@@ -31,7 +31,7 @@ public class gemPlayer : MonoBehaviour
         eagle = GameObject.Find("gem-picker");
 
         // Assuming the robot is picking gem
-        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("panda_reader", UpdatePos);
+        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
 
 
     }
@@ -41,8 +41,8 @@ public class gemPlayer : MonoBehaviour
     {
         // the gem player's turn
         if(gem.transform.position.z == 0){
-            float x = hand.pos_x;
-            float y = hand.pos_y;
+            float x = hand.pos_x * 40;
+            float y = hand.pos_y * 40;
 
             Debug.Log(x);
             Debug.Log(y);

@@ -29,7 +29,7 @@ public class cherryPlayer : MonoBehaviour
         cherry.transform.position = show;
 
         // For cherry player
-        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("cherry_pos", UpdatePos);
+        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player1_pub", UpdatePos);
 
 
     }
@@ -39,8 +39,8 @@ public class cherryPlayer : MonoBehaviour
     {
         // the cherry player's turn
         if(cherry.transform.position.z == 0){
-            float x = hand.pos_x;
-            float y = hand.pos_y;
+            float x = hand.pos_x * 40;
+            float y = hand.pos_y * 40;
 
             Debug.Log(x);
             Debug.Log(y);
