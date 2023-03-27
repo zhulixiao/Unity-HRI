@@ -18,7 +18,7 @@ public class gemPlayer : MonoBehaviour
     private GameObject cherry;
 
     private bool lockGem = false;
-    private float speed = 100;
+    private float speed = 10000;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +41,15 @@ public class gemPlayer : MonoBehaviour
     {
         // the gem player's turn
         if(gem.transform.position.z == 0){
-            float x = hand.pos_x * 40;
-            float y = hand.pos_y * 40;
+            float x = hand.pos_x;
+            float y = hand.pos_y;
 
             Debug.Log(x);
             Debug.Log(y);
             Vector3 movement =new Vector3(x,y,0);
 
-            eagle.transform.position = Vector3.MoveTowards(eagle.transform.position, movement, speed * Time.deltaTime);
+            //eagle.transform.position = Vector3.MoveTowards(eagle.transform.position, movement, speed * Time.deltaTime);
+            eagle.transform.position = movement;
             if(eagle.transform.position.x < -4.45){
                 eagle.transform.position = new Vector3((float)-4.45,eagle.transform.position.y,0);
             }
