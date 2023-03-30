@@ -16,17 +16,17 @@ public class cherryPlayer : MonoBehaviour
 
     private GameObject cherry;
 
-    private bool lockCherry = false;
+    public bool lockCherry = false;
     private float speed = 10000;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         show = new Vector3(0,1,0);
         hide = new Vector3(0,0,-10);
         cherry = GameObject.Find("cherry");
         eagle = GameObject.Find("cherry-picker");
-
-        cherry.transform.position = show;
+        Debug.Log("cherry is started");
+        // cherry.transform.position = show;
 
         // For cherry player
         ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player1_pub", UpdatePos);

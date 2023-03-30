@@ -17,21 +17,24 @@ public class gemPlayer : MonoBehaviour
 
     private GameObject cherry;
 
-    private bool lockGem = false;
+    public bool lockGem = false;
     private float speed = 10000;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+
+        Debug.Log("gem is started");
+
         show = new Vector3(0,-1,0);
         hide = new Vector3(0,0,-10);
         gem = GameObject.Find("gem");
-        gem.transform.position = show;
+        //gem.transform.position = show;
         
         eagle = GameObject.Find("gem-picker");
 
         // Assuming the robot is picking gem
-        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
+        //ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
 
 
     }
