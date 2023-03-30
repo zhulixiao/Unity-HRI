@@ -10,15 +10,13 @@ public class gemPlayer : MonoBehaviour
 {
 
 
-    private GameObject gem;
+    public GameObject gem;
     private GameObject eagle;
     private Vector3 show;
     private Vector3 hide;
 
-    private GameObject cherry;
-
     public bool lockGem = false;
-    private float speed = 10000;
+    //rivate float speed = 10000;
 
     // Start is called before the first frame update
     public void Start()
@@ -27,14 +25,14 @@ public class gemPlayer : MonoBehaviour
         Debug.Log("gem is started");
 
         show = new Vector3(0,-1,0);
-        hide = new Vector3(0,0,-10);
+        hide = new Vector3(0,-1,-10);
         gem = GameObject.Find("gem");
         //gem.transform.position = show;
         
         eagle = GameObject.Find("gem-picker");
 
         // Assuming the robot is picking gem
-        //ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
+        ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
 
 
     }
@@ -42,17 +40,25 @@ public class gemPlayer : MonoBehaviour
     // Update is called once per frame
     void UpdatePos(PosRot hand)
     {
+        float x = hand.pos_x;
+        float y = hand.pos_y;
+
+        // Debug.Log(x);
+        // Debug.Log(y);
+        Vector3 movement =new Vector3(x,y,0);
+        eagle.transform.position = movement;
+
         // the gem player's turn
         if(gem.transform.position.z == 0){
-            float x = hand.pos_x;
-            float y = hand.pos_y;
+            // float x = hand.pos_x;
+            // float y = hand.pos_y;
 
-            Debug.Log(x);
-            Debug.Log(y);
-            Vector3 movement =new Vector3(x,y,0);
+            // Debug.Log(x);
+            // Debug.Log(y);
+            // Vector3 movement =new Vector3(x,y,0);
 
             //eagle.transform.position = Vector3.MoveTowards(eagle.transform.position, movement, speed * Time.deltaTime);
-            eagle.transform.position = movement;
+            //eagle.transform.position = movement;
             if(eagle.transform.position.x < -4.45){
                 eagle.transform.position = new Vector3((float)-4.45,eagle.transform.position.y,0);
             }
@@ -101,7 +107,19 @@ public class gemPlayer : MonoBehaviour
                 lockGem = false;
             }
 
+        } else {
+            lockGem = false;
         }
         
+    }
+
+
+    public void hideGem(){
+        gem.transform.position = hide;
+        lockGem = false;
+    }
+
+    public void showGem(){
+        gem.transform.position = show;
     }
 }

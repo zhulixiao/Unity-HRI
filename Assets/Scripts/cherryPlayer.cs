@@ -14,15 +14,15 @@ public class cherryPlayer : MonoBehaviour
     private Vector3 show;
     private Vector3 hide;
 
-    private GameObject cherry;
+    public GameObject cherry;
 
     public bool lockCherry = false;
-    private float speed = 10000;
+    //private float speed = 10000;
     // Start is called before the first frame update
     public void Start()
     {
         show = new Vector3(0,1,0);
-        hide = new Vector3(0,0,-10);
+        hide = new Vector3(0,1,-10);
         cherry = GameObject.Find("cherry");
         eagle = GameObject.Find("cherry-picker");
         Debug.Log("cherry is started");
@@ -37,17 +37,16 @@ public class cherryPlayer : MonoBehaviour
     // Update is called once per frame
     void UpdatePos(PosRot hand)
     {
+        float x = hand.pos_x;
+        float y = hand.pos_y;
+        Vector3 movement =new Vector3(x,y,0);
+        eagle.transform.position = movement;
         // the cherry player's turn
         if(cherry.transform.position.z == 0){
-            float x = hand.pos_x;
-            float y = hand.pos_y;
 
-            Debug.Log(x);
-            Debug.Log(y);
-            Vector3 movement =new Vector3(x,y,0);
 
             //eagle.transform.position = Vector3.MoveTowards(eagle.transform.position, movement, speed * Time.deltaTime);
-            eagle.transform.position = movement;
+            
             if(eagle.transform.position.x < -4.45){
                 eagle.transform.position = new Vector3((float)-4.45,eagle.transform.position.y,0);
             }
@@ -96,6 +95,20 @@ public class cherryPlayer : MonoBehaviour
 
         
         
-        }        
+        } else {
+            lockCherry = false;
+        }
+
+        
+
+    }
+    
+    public void hideCherry(){
+        cherry.transform.position = hide;
+        lockCherry = false;
+    }
+
+    public void showCherry(){
+        cherry.transform.position = show;
     }
 }

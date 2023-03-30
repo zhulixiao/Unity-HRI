@@ -488,11 +488,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260537626}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 300dc10ae89a37e088516fb3138a846b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherryPlayer: {fileID: 0}
+  gemPlayer: {fileID: 0}
 --- !u!1 &466854550
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,11 +695,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 300dc10ae89a37e088516fb3138a846b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherryPlayer: {fileID: 0}
+  gemPlayer: {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb34b544407f03e489edcf5a6ae9f243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherry: {fileID: 0}
+  lockCherry: 0
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b606106c4df7f84f8b15e83f86b4d16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gem: {fileID: 0}
+  lockGem: 0
 --- !u!1 &599768552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,11 +1296,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653672664}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 300dc10ae89a37e088516fb3138a846b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherryPlayer: {fileID: 0}
+  gemPlayer: {fileID: 0}
 --- !u!1 &1699841592
 GameObject:
   m_ObjectHideFlags: 0

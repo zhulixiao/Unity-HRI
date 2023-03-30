@@ -28,9 +28,6 @@ public class game : MonoBehaviour
     // Hide after the background
     // Start is called before the first frame update
 
-    private bool lockGem = false;
-    private bool lockCherry = false;
-
     private float speed = 100;
     void Start()
     {
@@ -56,10 +53,12 @@ public class game : MonoBehaviour
             gem.transform.position = showGem;
             cherry.transform.position = showCherry;
         } else if (startFlag.pos_z == -10) {
-            gem.transform.position = hide;
-            gemPlayer.lockGem = false;
+
             cherry.transform.position = hide;
-            cherryPlayer.lockCherry = false;
+            //cherryPlayer.lockCherry = false;
+
+            gem.transform.position = hide;
+            //gemPlayer.lockGem = false;
         }
     }
 
