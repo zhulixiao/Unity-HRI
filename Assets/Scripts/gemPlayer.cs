@@ -101,7 +101,7 @@ public class gemPlayer : MonoBehaviour
                 gem.transform.position = new Vector3(gem.transform.position.x,(float)4.5,0);
             }
 
-            if(gem.transform.position.x < -3.2 && gem.transform.position.y < -3.2){
+            if(gem.transform.position.x == -4 && gem.transform.position.y == -4){
                // cherry.transform.position = show;
                 gem.transform.position = show;
                 lockGem = false;
