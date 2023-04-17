@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using Unity.Robotics.ROSTCPConnector;
 using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
 
+
 public class gemPlayer : MonoBehaviour
 {
 
@@ -27,15 +28,35 @@ public class gemPlayer : MonoBehaviour
         show = new Vector3(0,-1,0);
         hide = new Vector3(0,-1,-10);
         gem = GameObject.Find("gem");
-        //gem.transform.position = show;
+        // gem.transform.position = show;
         
         eagle = GameObject.Find("gem-picker");
 
         // Assuming the robot is picking gem
         ROSConnection.GetOrCreateInstance().Subscribe<PosRot>("player2_pub", UpdatePos);
 
+        // eagle movement is controlled by the mouse
+
 
     }
+
+    // a function to listen to a mouse movement
+    // void Update()
+    // {
+    //     if(Input.GetMouseButtonDown(0)){
+    //         Debug.Log("mouse is clicked");
+    //         Debug.Log(Input.mousePosition);
+    //     }
+    //     Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     gem.transform.position = mousePosition;
+    //     if(gem.transform.position.x < -3.9 && gem.transform.position.y < -3.9 &&
+    //     gem.transform.position.x > -4.1 && gem.transform.position.y > -4.1 ){
+    //         // cherry.transform.position = show;
+    //         gem.transform.position = show;
+    //         lockGem = false;
+    //     }
+    // }
+
 
     // Update is called once per frame
     void UpdatePos(PosRot hand)
@@ -101,11 +122,12 @@ public class gemPlayer : MonoBehaviour
                 gem.transform.position = new Vector3(gem.transform.position.x,(float)4.5,0);
             }
 
-            if(gem.transform.position.x == -4 && gem.transform.position.y == -4){
-               // cherry.transform.position = show;
-                gem.transform.position = show;
-                lockGem = false;
-            }
+        if(gem.transform.position.x < -3.9 && gem.transform.position.y < -3.9 &&
+        gem.transform.position.x > -4.1 && gem.transform.position.y > -4.1 ){
+            // cherry.transform.position = show;
+            gem.transform.position = show;
+            lockGem = false;
+        }
 
         } else {
             lockGem = false;
