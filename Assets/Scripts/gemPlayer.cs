@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 using Unity.Robotics.ROSTCPConnector;
 using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
-
+using StreamWriter = System.IO.StreamWriter;
 
 public class gemPlayer : MonoBehaviour
 {
@@ -103,6 +103,7 @@ public class gemPlayer : MonoBehaviour
             if(Mathf.Abs(gem.transform.position.x - eagle.transform.position.x) < 0.5 && Mathf.Abs(gem.transform.position.y - eagle.transform.position.y) < 0.5 && !lockGem){
                 gem.transform.position = eagle.transform.position;
                 lockGem = true;
+                writeTime();
             }
 
             
@@ -122,11 +123,12 @@ public class gemPlayer : MonoBehaviour
                 gem.transform.position = new Vector3(gem.transform.position.x,(float)4.5,0);
             }
 
-        if(gem.transform.position.x < -3.9 && gem.transform.position.y < -3.9 &&
-        gem.transform.position.x > -4.1 && gem.transform.position.y > -4.1 ){
+        if(gem.transform.position.x < -3.8 && gem.transform.position.y < -3.8 &&
+        gem.transform.position.x > -4.2 && gem.transform.position.y > -4.2 ){
             // cherry.transform.position = show;
             gem.transform.position = show;
             lockGem = false;
+            writeTime();
         }
 
         } else {
@@ -144,4 +146,17 @@ public class gemPlayer : MonoBehaviour
     public void showGem(){
         gem.transform.position = show;
     }
+
+    // open a file and store the time
+    // if the file is not exist, create a new file
+    // if the file is exist, append the time to the bottom of the file
+
+    public void writeTime(){
+        string path = "Assets/Scripts/gem_time.txt";
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+        writer.Close();
+    }
+
 }

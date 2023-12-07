@@ -31,7 +31,7 @@ public class game : MonoBehaviour
     private float speed = 100;
     void Start()
     {
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 120;
         // cherryPlayer.Start();
         // gemPlayer.Start();
         showCherry = new Vector3(0,1,0);

@@ -87,8 +87,8 @@ public class cherryPlayer : MonoBehaviour
             }
 
 
-            if(cherry.transform.position.x > 3.9 && cherry.transform.position.y > 3.9 &&
-                cherry.transform.position.x < 4.1 && cherry.transform.position.y < 4.1){
+            if(cherry.transform.position.x > 3.8 && cherry.transform.position.y > 3.8 &&
+                cherry.transform.position.x < 4.2 && cherry.transform.position.y < 4.2){
                 cherry.transform.position = show;
                 // gem.transform.position = show;
                 lockCherry = false;
