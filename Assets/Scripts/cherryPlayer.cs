@@ -16,7 +16,7 @@ public class cherryPlayer : MonoBehaviour
 
     public GameObject cherry;
 
-    public bool lockCherry = false;
+    public static bool lockCherry = false;
     //private float speed = 10000;
     // Start is called before the first frame update
     public void Start()

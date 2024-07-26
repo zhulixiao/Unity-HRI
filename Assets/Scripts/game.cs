@@ -11,17 +11,21 @@ using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
 
 public class game : MonoBehaviour
 {
-    public cherryPlayer cherryPlayer;
-    public gemPlayer gemPlayer;
+    public cherryPlayer cherryplayer = new cherryPlayer();
+    public fruitsPlayer fruitsplayer = new fruitsPlayer();
 
     ROSConnection rosPub;
 
-    private GameObject gem;
+    private List<GameObject> fruits = new List<GameObject>();
+
+    private string[] fruitsName = {"Apple","Avocado","Banana","Coconut","Grape1","Grape2","Kiwi","Lemon","Orange","Peach","Pear","Pineapple","Strawberry","Watermelon"};
+    
+
     private GameObject cherry;
 
     private GameObject eagle;
     private Vector3 showCherry;
-    private Vector3 showGem;
+    private Vector3 showfruits;
 
     private Vector3 hide;
     private Vector3 hideEagle;
@@ -33,12 +37,17 @@ public class game : MonoBehaviour
     {
         Application.targetFrameRate = 120;
         // cherryPlayer.Start();
-        // gemPlayer.Start();
+        // fruitsPlayer.Start();
         showCherry = new Vector3(0,1,0);
-        showGem = new Vector3(0,-1,0);
+        showfruits = new Vector3(0,-1,0);
         hide = new Vector3(0,0,-10);
-        gem = GameObject.Find("gem");
-        gem.transform.position = hide;
+        //fruits = GameObject.Find("fruits");
+        //fruits.transform.position = hide;
+
+        for(int i = 0; i < fruitsName.Length; i++){
+            fruits.Add(GameObject.Find(fruitsName[i]));
+            fruits[i].transform.position = hide;
+        }
         cherry = GameObject.Find("cherry");
         cherry.transform.position = hide;
 
@@ -50,15 +59,19 @@ public class game : MonoBehaviour
     void UpdateStart(PosRot startFlag)
     {   
         if(startFlag.pos_z == 0){
-            gem.transform.position = showGem;
+            //int random = Random.Range(0,fruitsName.Length);
+            fruits[0].transform.position = showfruits;
+            
             cherry.transform.position = showCherry;
         } else if (startFlag.pos_z == -10) {
 
             cherry.transform.position = hide;
-            //cherryPlayer.lockCherry = false;
 
-            gem.transform.position = hide;
-            //gemPlayer.lockGem = false;
+            for(int i = 0; i < fruitsName.Length; i++){
+                fruits[i].transform.position = hide;
+            }
+            //fruits[0].transform.position = hide;
+            //fruitsPlayer.lockfruits = false;
         }
     }
 
