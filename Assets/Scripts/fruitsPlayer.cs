@@ -75,14 +75,25 @@ public class fruitsPlayer : MonoBehaviour
     // Update is called once per frame
     void UpdatePos(PosRot hand)
     {
-        float x = hand.pos_x;
-        float y = hand.pos_y;
+        if(hand.pos_x <= 4.45 && hand.pos_x >= -4.45 && hand.pos_y <= 4.5 && hand.pos_y >= -4.5){
+            // Debug.Log("hand is in the range");
+            float x = hand.pos_x;
+            float y = hand.pos_y;
+            Vector3 movement =new Vector3(x,y,0);
+            eagle.transform.position = movement;
+            trail.transform.position = movement;
+        } else {
+            // Debug.Log("hand is out of the range");
+            // out of the range
+            // don't move the eagle
+            return;
+        }
+
+
 
         // Debug.Log(x);
         // Debug.Log(y);
-        Vector3 movement =new Vector3(x,y,0);
-        eagle.transform.position = movement;
-        trail.transform.position = movement;
+
         // particles.transform.position = movement;
 
         // random a fruit
