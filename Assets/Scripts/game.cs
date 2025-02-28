@@ -11,8 +11,8 @@ using PosRot = RosMessageTypes.UnityRoboticsDemo.PosRotMsg;
 
 public class game : MonoBehaviour
 {
-    public cherryPlayer cherryplayer = new cherryPlayer();
-    public fruitsPlayer fruitsplayer = new fruitsPlayer();
+    private cherryPlayer cherryplayer;
+    private fruitsPlayer fruitsplayer;
 
     ROSConnection rosPub;
 
@@ -36,6 +36,12 @@ public class game : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 120;
+
+        cherryplayer = FindObjectOfType<cherryPlayer>();
+        fruitsplayer = FindObjectOfType<fruitsPlayer>();
+        fruitsplayer.newfruits = false;
+        fruitsplayer.lockfruits = false;
+        cherryplayer.lockCherry = false;
         // cherryPlayer.Start();
         // fruitsPlayer.Start();
         showCherry = new Vector3(0,1,0);
@@ -71,8 +77,15 @@ public class game : MonoBehaviour
                 fruits[i].transform.position = hide;
             }
             //fruits[0].transform.position = hide;
-            //fruitsPlayer.lockfruits = false;
+            fruitsplayer.lockfruits = false;
+            fruitsplayer.newfruits = false;
+            cherryplayer.lockCherry = false;
         }
     }
+
+    void OnDestroy() {
+        ROSConnection.GetOrCreateInstance().Unsubscribe("start_pub");
+    }
+
 
 }

@@ -21,9 +21,9 @@ public class fruitsPlayer : MonoBehaviour
 
     // private Vector3 hideParticles;
 
-    public static bool lockfruits = false;
-    private bool newfruits = false;
-    public int random = 0;
+    public bool lockfruits = false;
+    public bool newfruits = false;
+    public static int random = 0;
     //rivate float speed = 10000;
 
     // Start is called before the first frame update
@@ -169,6 +169,7 @@ public class fruitsPlayer : MonoBehaviour
             }
         } else {
             lockfruits = false;
+            newfruits = false;
             random = 0;
             for(int i = 0; i < fruitsName.Length; i++){
                 fruits[i].transform.position = hide;
