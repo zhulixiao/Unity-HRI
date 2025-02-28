@@ -82,9 +82,18 @@ public class game : MonoBehaviour
             cherryplayer.lockCherry = false;
         }
     }
-
     void OnDestroy() {
-        ROSConnection.GetOrCreateInstance().Unsubscribe("start_pub");
+        var ros = ROSConnection.GetOrCreateInstance();
+        if (ros != null) {
+            ros.Unsubscribe("start_pub");
+        }
+    }
+
+    void OnApplicationQuit() {
+        var ros = FindObjectOfType<ROSConnection>(); // Don't create a new instance
+        if (ros != null) {
+            ros.Disconnect(); // Ensure it properly disconnects
+        }
     }
 
 
